@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 
 public class SettingFragment extends Fragment {
 
-
     //масив питань з відповіддями до них
     String[][] massQuest = {
             {" ", " "},
@@ -117,18 +116,6 @@ public class SettingFragment extends Fragment {
             onTestWithAnswer();
         });
 
-//        buttonTestWithAnswer.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                if (savedInstanceState != null) {
-//
-//                Fragment fragment = new TestWithAnswerFragment();
-//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                transaction.replace(R.id.fragmentContainerView, fragment);
-//                transaction.commit();
-////                }
-//            }
-//        });
     }
 
     private void onTestWithAnswer() {
