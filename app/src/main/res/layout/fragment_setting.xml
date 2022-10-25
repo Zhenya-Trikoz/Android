@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_setting_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SettingFragment">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/test_setting"
+        android:textSize="40sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="55dp">
+
+        <TextView
+            android:id="@+id/textLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="20dp"
+            android:text="@string/language"
+            android:textSize="25sp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupChooseLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/buttonChooseLanguageEnglish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="20dp"
+                android:text="@string/english"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/buttonChooseLanguageGerman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="20dp"
+                android:text="@string/german"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textQuestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="@string/number_question"
+                android:textSize="25sp" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/radioGroupChooseNumberQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/buttonChooseNumberQuestionFive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="20dp"
+                android:text="@string/_5"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/buttonChooseNumberQuestionTen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="20dp"
+                android:text="@string/_10"
+                android:textSize="25sp" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textTimeToOneQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="5dp"
+            android:text="@string/time_to_one_question"
+            android:textSize="25sp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupTimeToOneQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/buttonTimeToOneQuestion20S"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="20dp"
+                android:text="@string/_20_sec"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/buttonTimeToOneQuestion30S"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="20dp"
+                android:text="@string/_30_sec"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/buttonTimeToOneQuestion1M"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="20dp"
+                android:text="@string/_1_min"
+                android:textSize="25sp" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonTestWithAnswer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/test_with_answer"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/buttonTestWithChoice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/test_with_choice"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
