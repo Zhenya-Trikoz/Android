@@ -28,4 +28,6 @@
     <string name="answer_one">TEST</string>
     <string name="answer_two">TEST</string>
     <string name="answer_tree">TEST</string>
+    <string name="translate_word">Translate word</string>
+    <string name="_00">00</string>
 </resources>

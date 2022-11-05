@@ -2,22 +2,24 @@ package com.example.testenglish;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.CountDownTimer;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
-public class TestWithAnswerFragment extends Fragment {
+public class TestWithChoiceFragment extends Fragment {
 
-    public TestWithAnswerFragment() {
-        super(R.layout.fragment_test_with_answer);
+    public TestWithChoiceFragment() {
+        super(R.layout.fragment_test_with_choice);
     }
 
     private static final String PARAM_CHOOSE_LANGUAGE = "chooseLanguage";
@@ -43,7 +45,15 @@ public class TestWithAnswerFragment extends Fragment {
     //Component Fragment
     private TextView textView;
     private EditText editText;
+
+    private RadioButton radioButtonOne;
+    private RadioButton radioButtonTwo;
+    private RadioButton radioButtonTree;
+
+    private RadioGroup radioGroupQuest;
+
     //
+
     int trueQuest = 0;
     int falseQuest = 0;
     //масив питань з відповіддями до них
@@ -55,15 +65,24 @@ public class TestWithAnswerFragment extends Fragment {
             {"Відпочивати", "Relax"},
             {"Ноутбук", "Laptop"}
     };
+    //масив з варіантами відповідей
+    String[][] massAnswer = {
+            {" ", " ", " "},
+            {"I", "I`m", "Me"},
+            {"Work", "Working", "will work"},
+            {"Studying", "Study", "Learn"},
+            {"Vacation", "Lazy", "Relax"},
+            {"Laptop", "PC", "PS5"}
+    };
 
-    public static TestWithAnswerFragment newInstance(int chooseLanguage, int numberQuest, int timeToOneQuest) {
-        TestWithAnswerFragment testWithAnswerFragment = new TestWithAnswerFragment();
+    public static TestWithChoiceFragment newInstance(int chooseLanguage, int numberQuest, int timeToOneQuest) {
+        TestWithChoiceFragment testWithChoiceFragment = new TestWithChoiceFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(PARAM_CHOOSE_LANGUAGE, chooseLanguage);
         bundle.putInt(PARAM_NUMBER_QUEST, numberQuest);
         bundle.putInt(PARAM_TIME_TO_ONE_QUEST, timeToOneQuest);
-        testWithAnswerFragment.setArguments(bundle);
-        return testWithAnswerFragment;
+        testWithChoiceFragment.setArguments(bundle);
+        return testWithChoiceFragment;
     }
 
     @Override
@@ -80,46 +99,63 @@ public class TestWithAnswerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_test_with_answer, container, false);
+        return inflater.inflate(R.layout.fragment_test_with_choice, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         setOrderQuest(randomMassNumberQuest());
+
+        //
         textTimer = view.findViewById(R.id.textTime);
 
         textView = view.findViewById(R.id.textWord);
-        editText = view.findViewById(R.id.editTextAnswer);
 
-        startTimer();
+        radioButtonOne = view.findViewById(R.id.buttonChoiceOne);
+        radioButtonTwo = view.findViewById(R.id.buttonChoiceTwo);
+        radioButtonTree = view.findViewById(R.id.buttonChoiceTree);
+
+        radioGroupQuest = view.findViewById(R.id.radioGroupQuest);
+        //
+
+        startTimer(view);
         writeQuest();
 
         view.findViewById(R.id.buttonContinueTestWithAnswer).setOnClickListener(v -> {
-            onClick();
+            onClick(view);
         });
         view.findViewById(R.id.buttonExit).setOnClickListener(v -> {
             onExit(view);
         });
     }
 
-
-    private void writeQuest() {
-
-        textView.setTextColor(Color.BLACK);
-        textView.setText(massQuest[orderQuest[getCompleteTest()]][0]);
+    public void writeQuest() {
 
         textTimer.setTextColor(Color.BLACK);
 
-        editText.setText("");
-        editText.setEnabled(true);
+        radioButtonOne.setTextColor(Color.BLACK);
+        radioButtonTwo.setTextColor(Color.BLACK);
+        radioButtonTree.setTextColor(Color.BLACK);
+
+        radioButtonOne.setEnabled(true);
+        radioButtonTwo.setEnabled(true);
+        radioButtonTree.setEnabled(true);
+
+
+        textView.setText(massQuest[orderQuest[getCompleteTest()]][0]);
+
+        radioButtonOne.setText(massAnswer[orderQuest[getCompleteTest()]][0]);
+        radioButtonTwo.setText(massAnswer[orderQuest[getCompleteTest()]][1]);
+        radioButtonTree.setText(massAnswer[orderQuest[getCompleteTest()]][2]);
+
     }
 
-    private void onClick() {
+    private void onClick(View view) {
         if (flagQuest) {
             if (completeTest < numberQuest) {
                 writeQuest();
                 timeLeftInMilliseconds = getTimeToOneQuest() * 1000L + 1000L;
-                startTimer();
+                startTimer(view);
                 flagQuest = false;
             } else {
 
@@ -131,10 +167,42 @@ public class TestWithAnswerFragment extends Fragment {
                         .commit();
             }
         } else {
-            answerCheck();
+            int id = radioGroupQuest.getCheckedRadioButtonId();
+
+            answerCheck(view, id);
             countDownTimer.cancel();
 
         }
+    }
+
+    public void answerCheck(View view, int id) {
+
+        System.out.println(id);
+        if (id != -1) {
+            RadioButton radioButton = view.findViewById(id);
+            if (massQuest[orderQuest[completeTest]][chooseLanguage].contentEquals(radioButton.getText())) {
+                trueQuest++;
+            } else {
+                falseQuest++;
+                radioButton.setTextColor(Color.RED);
+            }
+        }
+
+        radioGroupQuest.clearCheck();
+
+        if (massQuest[orderQuest[completeTest]][chooseLanguage].contentEquals(radioButtonOne.getText())) {
+            radioButtonOne.setTextColor(Color.GREEN);
+        } else if (massQuest[orderQuest[completeTest]][chooseLanguage].contentEquals(radioButtonTwo.getText())) {
+            radioButtonTwo.setTextColor(Color.GREEN);
+        } else if (massQuest[orderQuest[completeTest]][chooseLanguage].contentEquals(radioButtonTree.getText())) {
+            radioButtonTree.setTextColor(Color.GREEN);
+        }
+        radioButtonOne.setEnabled(false);
+        radioButtonTwo.setEnabled(false);
+        radioButtonTree.setEnabled(false);
+
+        completeTest++;
+        flagQuest = true;
     }
 
     private void onExit(View view) {
@@ -146,27 +214,8 @@ public class TestWithAnswerFragment extends Fragment {
                 .commit();
     }
 
-    private void answerCheck() {
 
-        String s = editText.getText().toString();
-        editText.setText("");
-        editText.setEnabled(false);
-
-
-        if (massQuest[orderQuest[completeTest]][chooseLanguage].equals(s)) {
-            trueQuest++;
-            textView.setTextColor(Color.GREEN);
-        } else {
-            falseQuest++;
-            textView.setTextColor(Color.RED);
-        }
-
-        flagQuest = true;
-        completeTest++;
-
-    }
-
-    private void startTimer() {
+    private void startTimer(View view) {
         countDownTimer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
             @Override
             public void onTick(long l) {
@@ -177,7 +226,9 @@ public class TestWithAnswerFragment extends Fragment {
             @Override
             public void onFinish() {
                 textTimer.setTextColor(Color.RED);
-                answerCheck();
+                int id = radioGroupQuest.getCheckedRadioButtonId();
+
+                answerCheck(view, id);
             }
         }.start();
 

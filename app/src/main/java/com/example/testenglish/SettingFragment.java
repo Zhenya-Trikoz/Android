@@ -116,7 +116,13 @@ public class SettingFragment extends Fragment {
             onTestWithAnswer();
         });
 
+        view.findViewById(R.id.buttonTestWithChoice).setOnClickListener(v ->{
+            onTestWithChoice();
+        });
+
     }
+
+
 
     private void onTestWithAnswer() {
         TestWithAnswerFragment testWithAnswerFragment = TestWithAnswerFragment.newInstance(chooseLanguage, numberQuest, timeToOneQuest);
@@ -126,5 +132,12 @@ public class SettingFragment extends Fragment {
                 .replace(R.id.fragmentContainerView, testWithAnswerFragment)
                 .commit();
     }
-
+    private void onTestWithChoice() {
+        TestWithChoiceFragment testWithChoiceFragment = TestWithChoiceFragment.newInstance(chooseLanguage, numberQuest, timeToOneQuest);
+        testWithChoiceFragment.setTargetFragment(this, 0);
+        getFragmentManager().beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.fragmentContainerView, testWithChoiceFragment)
+                .commit();
+    }
 }
