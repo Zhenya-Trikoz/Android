@@ -10,27 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 
 public class SettingFragment extends Fragment {
-
-    //масив питань з відповіддями до них
-    String[][] massQuest = {
-            {" ", " "},
-            {"Я", "I"},
-            {"Працювати", "Work"},
-            {"Вчитися", "Study"},
-            {"Відпочивати", "Relax"},
-            {"Ноутбук", "Laptop"}
-    };
-    //масив з варіантами відповідей
-    String[][] massAnswer = {
-            {" ", " ", " "},
-            {"I", "I`m", "Me"},
-            {"Work", "Working", "will work"},
-            {"Studying", "Study", "Learn"},
-            {"Vacation", "Lazy", "Relax"},
-            {"Laptop", "PC", "PS5"}
-    };
 
     int chooseLanguage = 0;
     int numberQuest = 0;
@@ -112,32 +96,60 @@ public class SettingFragment extends Fragment {
             }
         }));
 
-        view.findViewById(R.id.buttonTestWithAnswer).setOnClickListener(v ->{
+        view.findViewById(R.id.buttonTestWithAnswer).setOnClickListener(v -> {
             onTestWithAnswer();
         });
 
-        view.findViewById(R.id.buttonTestWithChoice).setOnClickListener(v ->{
+        view.findViewById(R.id.buttonTestWithChoice).setOnClickListener(v -> {
             onTestWithChoice();
         });
 
     }
 
 
-
     private void onTestWithAnswer() {
-        TestWithAnswerFragment testWithAnswerFragment = TestWithAnswerFragment.newInstance(chooseLanguage, numberQuest, timeToOneQuest);
+        TestWithAnswerFragment testWithAnswerFragment = TestWithAnswerFragment.newInstance(chooseLanguage, numberQuest, timeToOneQuest, randomListNumberQuest());
         testWithAnswerFragment.setTargetFragment(this, 0);
         getFragmentManager().beginTransaction()
                 .addToBackStack(null)
                 .replace(R.id.fragmentContainerView, testWithAnswerFragment)
                 .commit();
     }
+
     private void onTestWithChoice() {
-        TestWithChoiceFragment testWithChoiceFragment = TestWithChoiceFragment.newInstance(chooseLanguage, numberQuest, timeToOneQuest);
+        TestWithChoiceFragment testWithChoiceFragment = TestWithChoiceFragment.newInstance(chooseLanguage, numberQuest, timeToOneQuest, randomListNumberQuest());
         testWithChoiceFragment.setTargetFragment(this, 0);
         getFragmentManager().beginTransaction()
                 .addToBackStack(null)
                 .replace(R.id.fragmentContainerView, testWithChoiceFragment)
                 .commit();
+    }
+
+    // метод створення рандомного списку питань
+    public ArrayList<Integer> randomListNumberQuest() {
+        int a = 0;
+        boolean flag = true;
+        int count = 0;
+
+        ArrayList<Integer> listNumberQuest = new ArrayList<>();
+
+        for (int i = 0; i < numberQuest; i++) {
+            while (flag) {
+                a = (int) ((Math.random() * 10) + 1);
+                for (int b = 0; b < listNumberQuest.size(); b++) {
+                    if (listNumberQuest.get(b) == a) {
+                        count++;
+                    }
+                }
+                if (count == 0) {
+                    flag = false;
+                }
+                count = 0;
+            }
+            listNumberQuest.add(a);
+            flag = true;
+        }
+
+        return listNumberQuest;
     }
 }

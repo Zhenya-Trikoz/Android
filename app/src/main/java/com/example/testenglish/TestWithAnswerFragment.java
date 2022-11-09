@@ -12,6 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
+import java.util.ArrayList;
 
 
 public class TestWithAnswerFragment extends Fragment {
@@ -23,13 +26,24 @@ public class TestWithAnswerFragment extends Fragment {
     private static final String PARAM_CHOOSE_LANGUAGE = "chooseLanguage";
     private static final String PARAM_NUMBER_QUEST = "numberQuest";
     private static final String PARAM_TIME_TO_ONE_QUEST = "timeToOneQuest";
+    private static final String PARAM_LIST_NUMBER_QUEST = "listNumberQuest";
 
-    private int chooseLanguage;
-    private int numberQuest;
-    private int timeToOneQuest;
+    private static final String PARAM_NUMBER_TRUE_QUEST = "numberTrueQuest";
+    private static final String PARAM_NUMBER_FALSE_QUEST = "numberFalseQuest";
 
-    private int[] orderQuest = new int[getNumberQuest()];
-    private int completeTest = 0;
+    private int chooseLanguage; // Вибір мови тесту
+    private int numberQuest; // Кількість питань в тесті
+    private int timeToOneQuest; // Час на одне питання
+    private ArrayList<Integer> listNumberQuest; // Список номерів питань
+
+    ///
+    private static final String PARAM_COMPLETE_TEST = "completeTest";
+    private static final String PARAM_TIME_LEFT_IN_MILLISECONDS = "timeLeftInMilliseconds";
+    private static final String PARAM_TRUE_QUEST = "trueQuest";
+    private static final String PARAM_FALSE_QUEST = "falseQuest";
+    //
+
+    private int completeTest = 0; // Кількість пройдених питань
 
     boolean flagQuest = false; // Флаг питання
 
@@ -53,15 +67,32 @@ public class TestWithAnswerFragment extends Fragment {
             {"Працювати", "Work"},
             {"Вчитися", "Study"},
             {"Відпочивати", "Relax"},
-            {"Ноутбук", "Laptop"}
+            {"Ноутбук", "Laptop"},
+            {"Встати", "Get up"},
+            {"Купити", "To buy"},
+            {"Зроблено", "Is made"},
+            {"Змінити", "Change"},
+            {"Ліжко", "Bed"},
+            {"Відкрито", "Opened"}
     };
 
-    public static TestWithAnswerFragment newInstance(int chooseLanguage, int numberQuest, int timeToOneQuest) {
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(PARAM_COMPLETE_TEST, completeTest);
+        outState.putLong(PARAM_TIME_LEFT_IN_MILLISECONDS, timeLeftInMilliseconds);
+        outState.putInt(PARAM_TRUE_QUEST, trueQuest);
+        outState.putInt(PARAM_FALSE_QUEST, falseQuest);
+    }
+
+
+    public static TestWithAnswerFragment newInstance(int chooseLanguage, int numberQuest, int timeToOneQuest, ArrayList<Integer> listNumberQuest) {
         TestWithAnswerFragment testWithAnswerFragment = new TestWithAnswerFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(PARAM_CHOOSE_LANGUAGE, chooseLanguage);
         bundle.putInt(PARAM_NUMBER_QUEST, numberQuest);
         bundle.putInt(PARAM_TIME_TO_ONE_QUEST, timeToOneQuest);
+        bundle.putIntegerArrayList(PARAM_LIST_NUMBER_QUEST, listNumberQuest);
         testWithAnswerFragment.setArguments(bundle);
         return testWithAnswerFragment;
     }
@@ -73,6 +104,7 @@ public class TestWithAnswerFragment extends Fragment {
             setChooseLanguage(getArguments().getInt(PARAM_CHOOSE_LANGUAGE));
             setNumberQuest(getArguments().getInt(PARAM_NUMBER_QUEST));
             setTimeToOneQuest(getArguments().getInt(PARAM_TIME_TO_ONE_QUEST));
+            setListNumberQuest(getArguments().getIntegerArrayList(PARAM_LIST_NUMBER_QUEST));
             timeLeftInMilliseconds = getTimeToOneQuest() * 1000L + 1000L;
         }
     }
@@ -85,7 +117,14 @@ public class TestWithAnswerFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        setOrderQuest(randomMassNumberQuest());
+
+        if (savedInstanceState != null) {
+            completeTest = savedInstanceState.getInt(PARAM_COMPLETE_TEST);
+            timeLeftInMilliseconds = savedInstanceState.getLong(PARAM_TIME_LEFT_IN_MILLISECONDS);
+            trueQuest = savedInstanceState.getInt(PARAM_TRUE_QUEST);
+            falseQuest = savedInstanceState.getInt(PARAM_FALSE_QUEST);
+        }
+
         textTimer = view.findViewById(R.id.textTime);
 
         textView = view.findViewById(R.id.textWord);
@@ -95,7 +134,7 @@ public class TestWithAnswerFragment extends Fragment {
         writeQuest();
 
         view.findViewById(R.id.buttonContinueTestWithAnswer).setOnClickListener(v -> {
-            onClick();
+            onClick(view);
         });
         view.findViewById(R.id.buttonExit).setOnClickListener(v -> {
             onExit(view);
@@ -106,7 +145,7 @@ public class TestWithAnswerFragment extends Fragment {
     private void writeQuest() {
 
         textView.setTextColor(Color.BLACK);
-        textView.setText(massQuest[orderQuest[getCompleteTest()]][0]);
+        textView.setText(massQuest[listNumberQuest.get(getCompleteTest())][0]);
 
         textTimer.setTextColor(Color.BLACK);
 
@@ -114,7 +153,7 @@ public class TestWithAnswerFragment extends Fragment {
         editText.setEnabled(true);
     }
 
-    private void onClick() {
+    private void onClick(View view) {
         if (flagQuest) {
             if (completeTest < numberQuest) {
                 writeQuest();
@@ -122,6 +161,16 @@ public class TestWithAnswerFragment extends Fragment {
                 startTimer();
                 flagQuest = false;
             } else {
+
+                Bundle bundle = new Bundle();
+                DialogFragment dialogFragment = new DialogFragment();
+
+                bundle.putInt(PARAM_NUMBER_QUEST, numberQuest);
+                bundle.putInt(PARAM_NUMBER_TRUE_QUEST, trueQuest);
+                bundle.putInt(PARAM_NUMBER_FALSE_QUEST, falseQuest);
+
+                dialogFragment.setArguments(bundle);
+                dialogFragment.show(getFragmentManager(), "dialog");
 
                 SettingFragment settingFragment = (SettingFragment) SettingFragment.newInstance();
                 settingFragment.setTargetFragment(this, 0);
@@ -153,7 +202,7 @@ public class TestWithAnswerFragment extends Fragment {
         editText.setEnabled(false);
 
 
-        if (massQuest[orderQuest[completeTest]][chooseLanguage].equals(s)) {
+        if (massQuest[listNumberQuest.get(completeTest)][chooseLanguage].equals(s)) {
             trueQuest++;
             textView.setTextColor(Color.GREEN);
         } else {
@@ -195,30 +244,6 @@ public class TestWithAnswerFragment extends Fragment {
         textTimer.setText(timeLeftText);
     }
 
-    // метод створення рандомного масиву питань
-    public int[] randomMassNumberQuest() {
-        int a = 0;
-        boolean flag = true;
-        int count = 0;
-        int[] bufMass = new int[getNumberQuest()];
-        for (int i = 0; i < bufMass.length; i++) {
-            while (flag) {
-                a = (int) ((Math.random() * getNumberQuest()) + 1);
-                for (int b = 0; b < bufMass.length; b++) {
-                    if (bufMass[b] == a) {
-                        count++;
-                    }
-                }
-                if (count == 0) {
-                    flag = false;
-                }
-                count = 0;
-            }
-            bufMass[i] = a;
-            flag = true;
-        }
-        return bufMass;
-    }
 
     public int getChooseLanguage() {
         return chooseLanguage;
@@ -232,9 +257,6 @@ public class TestWithAnswerFragment extends Fragment {
         return timeToOneQuest;
     }
 
-    public int[] getOrderQuest() {
-        return orderQuest;
-    }
 
     public int getCompleteTest() {
         return completeTest;
@@ -244,9 +266,6 @@ public class TestWithAnswerFragment extends Fragment {
         this.completeTest = completeTest;
     }
 
-    public void setOrderQuest(int[] orderQuest) {
-        this.orderQuest = orderQuest;
-    }
 
     public void setChooseLanguage(int chooseLanguage) {
         this.chooseLanguage = chooseLanguage;
@@ -258,5 +277,13 @@ public class TestWithAnswerFragment extends Fragment {
 
     public void setTimeToOneQuest(int timeToOneQuest) {
         this.timeToOneQuest = timeToOneQuest;
+    }
+
+    public ArrayList<Integer> getListNumberQuest() {
+        return listNumberQuest;
+    }
+
+    public void setListNumberQuest(ArrayList<Integer> listNumberQuest) {
+        this.listNumberQuest = listNumberQuest;
     }
 }
