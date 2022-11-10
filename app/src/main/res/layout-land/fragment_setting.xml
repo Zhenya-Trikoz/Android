@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_setting_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/setting_test"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <TextView
+            android:id="@+id/textLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/language"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupChooseLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textLanguage">
+
+            <RadioButton
+                android:id="@+id/buttonChooseLanguageEnglish"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:padding="20dp"
+                android:text="@string/english"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/buttonChooseLanguageGerman"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:padding="20dp"
+                android:text="@string/german"
+                android:textSize="25sp" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <TextView
+            android:id="@+id/textQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/number_question"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupChooseNumberQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textQuestion">
+
+            <RadioButton
+                android:id="@+id/buttonChooseNumberQuestionFive"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp"
+                android:text="@string/_5"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/buttonChooseNumberQuestionTen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp"
+                android:text="@string/_10"
+                android:textSize="25sp" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="50dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <TextView
+            android:id="@+id/textTimeToOneQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/time"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupTimeToOneQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textTimeToOneQuestion">
+
+            <RadioButton
+                android:id="@+id/buttonTimeToOneQuestion20S"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="@string/_20_sec"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/buttonTimeToOneQuestion30S"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp"
+                android:text="@string/_30_sec"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/buttonTimeToOneQuestion1M"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp"
+                android:text="@string/_1_min"
+                android:textSize="25sp" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+        <Button
+            android:id="@+id/buttonTestWithAnswer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="@string/test_with_answer"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/buttonTestWithChoice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupTimeToOneQuestion" />
+
+
+        <Button
+            android:id="@+id/buttonTestWithChoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/test_with_choice"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/buttonTestWithAnswer"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupTimeToOneQuestion" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

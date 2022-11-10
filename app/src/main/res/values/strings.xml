@@ -6,14 +6,14 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="test_setting">Test Setting</string>
+    <string name="setting_test">Setting Test</string>
     <string name="language">Language</string>
     <string name="english">English</string>
     <string name="german">German</string>
     <string name="number_question">Number Question</string>
     <string name="_5">5</string>
     <string name="_10">10</string>
-    <string name="time_to_one_question">Time to one Question</string>
+    <string name="time">Time</string>
     <string name="_20_sec">20 Sec</string>
     <string name="_30_sec">30 Sec</string>
     <string name="_1_min">1 Min</string>
