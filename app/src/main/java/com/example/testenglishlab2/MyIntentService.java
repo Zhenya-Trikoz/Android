@@ -21,7 +21,6 @@ public class MyIntentService extends IntentService {
     public static final String EXTRA_MASS_QUEST = "EXTRA_MASS_QUEST";
     public static final String EXTRA_MASS_ANSWER = "EXTRA_MASS_ANSWER";
 
-    String extraOut = "Кота накормили, погладили и поиграли с ним";
 
     String[][] massQuest;
     String[][] massAnswer;

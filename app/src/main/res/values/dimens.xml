@@ -1,3 +1,23 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="marginTop">25dp</dimen>
+    <dimen name="marginTopButton">55dp</dimen>
+    <dimen name="textSizeTitle">40sp</dimen>
+    <dimen name="padding">5dp</dimen>
+    <dimen name="textSize">30sp</dimen>
+    <dimen name="textSizeButton">20sp</dimen>
+    <dimen name="marginStartFirstButton">20dp</dimen>
+    <dimen name="marginEndTwoButton">20dp</dimen>
+    <dimen name="marginEndFirstButton">15dp</dimen>
+    <dimen name="marginStartTwoButton">15dp</dimen>
+    <dimen name="paddingRadioButton">20dp</dimen>
+    <dimen name="textSizeRadioButton">25sp</dimen>
+    <dimen name="linerLayoutButtonMarginTop">50dp</dimen>
+    <dimen name="linerLayoutMarginTop">24dp</dimen>
+    <dimen name="linerLayoutMarginStart">50dp</dimen>
+    <dimen name="linerLayoutMarginEnd">50dp</dimen>
+    <dimen name="minHeight">48dp</dimen>
+    <dimen name="widthButton">0dp</dimen>
+    <dimen name="marginStartButton">30dp</dimen>
+    <dimen name="marginEndButton">30dp</dimen>
 </resources>

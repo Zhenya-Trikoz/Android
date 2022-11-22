@@ -6,25 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity_test_with_choice">
+
     <TextView
         android:id="@+id/textTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="@dimen/marginTopButton"
         android:text="@string/_00"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="@dimen/textSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textWord"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/buttonExit"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/widthButton"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginStart="@dimen/marginStartButton"
+        android:layout_marginTop="@dimen/marginTopButton"
+        android:layout_marginEnd="@dimen/marginEndButton"
         android:text="@string/exit"
         app:layout_constraintEnd_toStartOf="@+id/buttonContinueTestWithChoice"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,10 +35,10 @@
         android:id="@+id/textWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/marginTopButton"
         android:text="@string/textWord"
         android:textColor="@color/black"
-        android:textSize="40sp"
+        android:textSize="@dimen/textSizeTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -46,21 +47,21 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/marginTop"
         android:text="@string/choose_one_answer"
         android:textColor="@color/black"
-        android:textSize="40sp"
+        android:textSize="@dimen/textSizeTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonContinueTestWithChoice"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/widthButton"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginStart="@dimen/marginStartButton"
+        android:layout_marginTop="@dimen/marginTopButton"
+        android:layout_marginEnd="@dimen/marginEndButton"
         android:text="@string/buttonContinueTestWithAnswer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonExit"
@@ -70,7 +71,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/marginTop"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/answer_one"
-                android:textSize="34sp"
+                android:textSize="@dimen/textSize"
                 android:visibility="visible"
                 tools:ignore="DuplicateSpeakableTextCheck" />
 
@@ -95,14 +96,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/answer_two"
-                android:textSize="34sp" />
+                android:textSize="@dimen/textSize" />
 
             <RadioButton
                 android:id="@+id/buttonChoiceTree"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/answer_tree"
-                android:textSize="34sp" />
+                android:textSize="@dimen/textSize" />
         </RadioGroup>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

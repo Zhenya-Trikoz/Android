@@ -24,18 +24,18 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        // Запускаем свой IntentService
+
         Intent intentMyIntentService = new Intent(this, MyIntentService.class);
         intentMyIntentService.setAction(MyIntentService.ACTION_RESPONSE_WORLD);
         startService(intentMyIntentService);
 
+
         mMyBroadcastReceiver = new MyBroadcastReceiver();
-        // регистрируем BroadcastReceiver
         IntentFilter intentFilter = new IntentFilter(
                 MyIntentService.ACTION_RESPONSE_WORLD);
-//        intentFilter.addCategory(Intent.CATEGORY_DEFAULT);
         registerReceiver(mMyBroadcastReceiver, intentFilter);
-        //////////////////////
+
+
         RadioGroup radioGroupChooseLanguage = findViewById(R.id.radioGroupChooseLanguage);
         radioGroupChooseLanguage.setOnCheckedChangeListener((new RadioGroup.OnCheckedChangeListener() {
             @Override
