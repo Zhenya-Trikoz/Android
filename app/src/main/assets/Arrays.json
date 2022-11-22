@@ -1,0 +1,30 @@
+{
+  "massQuest": [
+    [" ", " "],
+    ["Я", "I"],
+    ["Працювати", "Work"],
+    ["Вчитися", "Study"],
+    ["Відпочивати", "Relax"],
+    ["Ноутбук", "Laptop"],
+    ["Встати", "Get up"],
+    ["Купити", "To buy"],
+    ["Зроблено", "Is made"],
+    ["Змінити", "Change"],
+    ["Ліжко", "Bed"],
+    ["Відкрито", "Opened"]
+  ],
+  "massAnswer" : [
+    [" ", " ", " "],
+    ["I", "I`m", "Me"],
+    ["Work", "Working", "will work"],
+    ["Studying", "Study", "Learn"],
+    ["Vacation", "Lazy", "Relax"],
+    ["Laptop", "PC", "PS5"],
+    ["Get up", "Getting up", "Gets up"],
+    ["Buying", "To buy", "Buy"],
+    ["Makes", "Is making", "Is made"],
+    ["Change", "Changing", "To change"],
+    ["Bed", "Bad", "Baed"],
+    ["Closed", "Open", "Opened"]
+  ]
+}

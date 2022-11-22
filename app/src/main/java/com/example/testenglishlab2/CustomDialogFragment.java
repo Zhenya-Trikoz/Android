@@ -1,12 +1,16 @@
-package com.example.testenglish;
+package com.example.testenglishlab2;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.FragmentManager;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 
-public class DialogFragment extends androidx.fragment.app.DialogFragment {
+public class CustomDialogFragment extends DialogFragment {
 
     private static final String PARAM_NUMBER_QUEST = "numberQuest";
     private static final String PARAM_NUMBER_TRUE_QUEST = "numberTrueQuest";
@@ -27,7 +31,15 @@ public class DialogFragment extends androidx.fragment.app.DialogFragment {
                         "Правильних відповідей: " + trueQuest +
                         "\n" +
                         "Неправильних відповідей: " + falseQuest)
-                .setPositiveButton("OK", null)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(getActivity(), SettingActivity.class);
+                        startActivity(intent);
+                    }
+                })
                 .create();
     }
+
+
 }
