@@ -2,7 +2,6 @@ package com.example.testenglishlab2;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +18,7 @@ public class CustomDialogFragment extends DialogFragment {
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
+        assert getArguments() != null;
         int numberQuest = getArguments().getInt(PARAM_NUMBER_QUEST);
         int trueQuest = getArguments().getInt(PARAM_NUMBER_TRUE_QUEST);
         int falseQuest = getArguments().getInt(PARAM_NUMBER_FALSE_QUEST);

@@ -36,7 +36,6 @@ public class Activity_test_with_answer extends AppCompatActivity {
 
     // Для масивов
     private static final String PARAM_MASS_QUEST = "massQuest";
-    private static final String PARAM_MASS_ANSWER = "massAnswer";
     private int completeTest = 0; // Кількість пройдених питань
 
     boolean flagQuest = false; // Флаг питання
@@ -103,12 +102,8 @@ public class Activity_test_with_answer extends AppCompatActivity {
         startTimer();
         writeQuest();
 
-        findViewById(R.id.buttonContinueTestWithAnswer).setOnClickListener(v -> {
-            onClick();
-        });
-        findViewById(R.id.buttonExit).setOnClickListener(v -> {
-            onExit();
-        });
+        findViewById(R.id.buttonContinueTestWithAnswer).setOnClickListener(v -> onClick());
+        findViewById(R.id.buttonExit).setOnClickListener(v -> onExit());
     }
 
     private void writeQuest() {
@@ -141,8 +136,6 @@ public class Activity_test_with_answer extends AppCompatActivity {
                 dialogFragment.setArguments(bundle);
                 dialogFragment.show(getSupportFragmentManager(), "dialog");
 
-//                Intent intent = new Intent(this, SettingActivity.class);
-//                startActivity(intent);
             }
         } else {
             answerCheck();
@@ -206,13 +199,6 @@ public class Activity_test_with_answer extends AppCompatActivity {
     }
 
 
-    public int getChooseLanguage() {
-        return chooseLanguage;
-    }
-
-    public int getNumberQuest() {
-        return numberQuest;
-    }
 
     public int getTimeToOneQuest() {
         return timeToOneQuest;
@@ -221,10 +207,6 @@ public class Activity_test_with_answer extends AppCompatActivity {
 
     public int getCompleteTest() {
         return completeTest;
-    }
-
-    public void setCompleteTest(int completeTest) {
-        this.completeTest = completeTest;
     }
 
 
@@ -238,10 +220,6 @@ public class Activity_test_with_answer extends AppCompatActivity {
 
     public void setTimeToOneQuest(int timeToOneQuest) {
         this.timeToOneQuest = timeToOneQuest;
-    }
-
-    public ArrayList<Integer> getListNumberQuest() {
-        return listNumberQuest;
     }
 
     public void setListNumberQuest(ArrayList<Integer> listNumberQuest) {

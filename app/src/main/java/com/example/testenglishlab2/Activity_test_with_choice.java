@@ -120,12 +120,8 @@ public class Activity_test_with_choice extends AppCompatActivity {
         startTimer();
         writeQuest();
 
-        findViewById(R.id.buttonContinueTestWithChoice).setOnClickListener(v -> {
-            onClick();
-        });
-        findViewById(R.id.buttonExit).setOnClickListener(v -> {
-            onExit();
-        });
+        findViewById(R.id.buttonContinueTestWithChoice).setOnClickListener(v -> onClick());
+        findViewById(R.id.buttonExit).setOnClickListener(v -> onExit());
     }
 
 
@@ -169,8 +165,6 @@ public class Activity_test_with_choice extends AppCompatActivity {
                 dialogFragment.setArguments(bundle);
                 dialogFragment.show(getSupportFragmentManager(), "dialog");
 
-//                Intent intent = new Intent(this, SettingActivity.class);
-//                startActivity(intent);
             }
         } else {
             int id = radioGroupQuest.getCheckedRadioButtonId();
@@ -248,13 +242,6 @@ public class Activity_test_with_choice extends AppCompatActivity {
         textTimer.setText(timeLeftText);
     }
 
-    public int getChooseLanguage() {
-        return chooseLanguage;
-    }
-
-    public int getNumberQuest() {
-        return numberQuest;
-    }
 
     public int getTimeToOneQuest() {
         return timeToOneQuest;
@@ -262,10 +249,6 @@ public class Activity_test_with_choice extends AppCompatActivity {
 
     public int getCompleteTest() {
         return completeTest;
-    }
-
-    public void setCompleteTest(int completeTest) {
-        this.completeTest = completeTest;
     }
 
     public void setChooseLanguage(int chooseLanguage) {
@@ -278,10 +261,6 @@ public class Activity_test_with_choice extends AppCompatActivity {
 
     public void setTimeToOneQuest(int timeToOneQuest) {
         this.timeToOneQuest = timeToOneQuest;
-    }
-
-    public ArrayList<Integer> getListNumberQuest() {
-        return listNumberQuest;
     }
 
     public void setListNumberQuest(ArrayList<Integer> listNumberQuest) {

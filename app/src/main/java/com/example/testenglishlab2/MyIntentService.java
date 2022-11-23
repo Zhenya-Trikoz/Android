@@ -1,7 +1,5 @@
 package com.example.testenglishlab2;
 
-import static android.app.PendingIntent.getActivity;
-
 import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
@@ -14,6 +12,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 public class MyIntentService extends IntentService {
 
@@ -39,35 +38,33 @@ public class MyIntentService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
         Log.d("IntentService", "Start");
 
+        assert intent != null;
         String action = intent.getAction();
-        switch (action) {
-            case ACTION_RESPONSE_WORLD:
-                String s = loadJSONFromAsset();
+        if (ACTION_RESPONSE_WORLD.equals(action)) {
+            String s = loadJSONFromAsset();
 
-                massWriteQuest(s);
-                massWriteAnswer(s);
+            massWriteQuest(s);
+            massWriteAnswer(s);
 
-                Intent responseIntent = new Intent();
-                responseIntent.setAction(ACTION_RESPONSE_WORLD);
-//                responseIntent.addCategory(Intent.CATEGORY_DEFAULT);
-                responseIntent.putExtra(EXTRA_MASS_QUEST, massQuest);
-                responseIntent.putExtra(EXTRA_MASS_ANSWER, massAnswer);
+            Intent responseIntent = new Intent();
+            responseIntent.setAction(ACTION_RESPONSE_WORLD);
+            responseIntent.putExtra(EXTRA_MASS_QUEST, massQuest);
+            responseIntent.putExtra(EXTRA_MASS_ANSWER, massAnswer);
 
-                sendBroadcast(responseIntent);
-                break;
+            sendBroadcast(responseIntent);
         }
 
     }
 
     public String loadJSONFromAsset() {
-        String json = null;
+        String json;
         try {
             InputStream is = getApplicationContext().getAssets().open("Arrays.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
             is.close();
-            json = new String(buffer, "UTF-8");
+            json = new String(buffer, StandardCharsets.UTF_8);
         } catch (IOException ex) {
             ex.printStackTrace();
             return null;

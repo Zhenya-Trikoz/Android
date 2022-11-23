@@ -2,6 +2,7 @@ package com.example.testenglishlab2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +19,7 @@ public class SettingActivity extends AppCompatActivity {
     int timeToOneQuest = 0;
 
     private MyBroadcastReceiver mMyBroadcastReceiver;
-
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,13 +94,9 @@ public class SettingActivity extends AppCompatActivity {
             }
         }));
 
-        findViewById(R.id.buttonTestWithAnswer).setOnClickListener(v -> {
-            onTestWithAnswer();
-        });
+        findViewById(R.id.buttonTestWithAnswer).setOnClickListener(v -> onTestWithAnswer());
 
-        findViewById(R.id.buttonTestWithChoice).setOnClickListener(v -> {
-            onTestWithChoice();
-        });
+        findViewById(R.id.buttonTestWithChoice).setOnClickListener(v -> onTestWithChoice());
 
     }
 
