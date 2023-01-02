@@ -1,4 +1,4 @@
-package com.example.testenglish;
+package com.example.testenglishlab2;
 
 import org.junit.Test;
 

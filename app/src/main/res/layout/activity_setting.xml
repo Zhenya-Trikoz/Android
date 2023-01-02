@@ -2,19 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_setting_layout"
+    android:id="@+id/activity_setting_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingFragment">
+    tools:context=".SettingActivity">
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="@dimen/marginTop"
         android:text="@string/setting_test"
         android:textColor="@color/black"
-        android:textSize="40sp"
+        android:textSize="@dimen/textSizeTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,11 +24,11 @@
         android:id="@+id/textLanguage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:padding="20dp"
+        android:layout_marginTop="@dimen/marginTop"
+        android:padding="@dimen/padding"
         android:text="@string/language"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="@dimen/textSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -38,11 +38,11 @@
         android:id="@+id/textQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:padding="5dp"
+        android:layout_marginTop="@dimen/marginTop"
+        android:padding="@dimen/padding"
         android:text="@string/number_question"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="@dimen/textSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroupChooseLanguage" />
@@ -52,10 +52,11 @@
         android:id="@+id/textTimeToOneQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="5dp"
+        android:layout_marginTop="@dimen/marginTop"
+        android:padding="@dimen/padding"
         android:text="@string/time"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="@dimen/textSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroupChooseNumberQuestion" />
@@ -65,11 +66,11 @@
         android:id="@+id/buttonTestWithAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginStart="@dimen/marginStartFirstButton"
+        android:layout_marginTop="@dimen/marginTopButton"
+        android:layout_marginEnd="@dimen/marginEndFirstButton"
         android:text="@string/test_with_answer"
-        android:textSize="20sp"
+        android:textSize="@dimen/textSizeButton"
         app:layout_constraintEnd_toStartOf="@+id/buttonTestWithChoice"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroupTimeToOneQuestion" />
@@ -79,11 +80,11 @@
         android:id="@+id/buttonTestWithChoice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="@dimen/marginStartTwoButton"
+        android:layout_marginTop="@dimen/marginTopButton"
+        android:layout_marginEnd="@dimen/marginEndTwoButton"
         android:text="@string/test_with_choice"
-        android:textSize="20sp"
+        android:textSize="@dimen/textSizeButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonTestWithAnswer"
         app:layout_constraintTop_toBottomOf="@+id/radioGroupTimeToOneQuestion" />
@@ -101,18 +102,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="4dp"
-            android:padding="20dp"
+            android:padding="@dimen/paddingRadioButton"
             android:text="@string/english"
-            android:textSize="25sp" />
+            android:textSize="@dimen/textSizeRadioButton" />
 
         <RadioButton
             android:id="@+id/buttonChooseLanguageGerman"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
-            android:padding="20dp"
+            android:padding="@dimen/paddingRadioButton"
             android:text="@string/german"
-            android:textSize="25sp" />
+            android:textSize="@dimen/textSizeRadioButton" />
     </RadioGroup>
 
     <RadioGroup
@@ -121,23 +121,23 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textQuestion" >
+        app:layout_constraintTop_toBottomOf="@+id/textQuestion">
 
         <RadioButton
             android:id="@+id/buttonChooseNumberQuestionFive"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="20dp"
+            android:padding="@dimen/paddingRadioButton"
             android:text="@string/_5"
-            android:textSize="25sp" />
+            android:textSize="@dimen/textSizeRadioButton" />
 
         <RadioButton
             android:id="@+id/buttonChooseNumberQuestionTen"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="20dp"
+            android:padding="@dimen/paddingRadioButton"
             android:text="@string/_10"
-            android:textSize="25sp" />
+            android:textSize="@dimen/textSizeRadioButton" />
 
     </RadioGroup>
 
@@ -153,27 +153,25 @@
             android:id="@+id/buttonTimeToOneQuestion20S"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="20dp"
+            android:padding="@dimen/paddingRadioButton"
             android:text="@string/_20_sec"
-            android:textSize="25sp" />
+            android:textSize="@dimen/textSizeRadioButton" />
 
         <RadioButton
             android:id="@+id/buttonTimeToOneQuestion30S"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="20dp"
+            android:padding="@dimen/paddingRadioButton"
             android:text="@string/_30_sec"
-            android:textSize="25sp" />
+            android:textSize="@dimen/textSizeRadioButton" />
 
         <RadioButton
             android:id="@+id/buttonTimeToOneQuestion1M"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="20dp"
+            android:padding="@dimen/paddingRadioButton"
             android:text="@string/_1_min"
-            android:textSize="25sp" />
+            android:textSize="@dimen/textSizeRadioButton" />
 
     </RadioGroup>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
