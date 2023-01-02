@@ -2,6 +2,9 @@ package com.example.testenglishlab2;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.nfc.Tag;
+import android.os.HandlerThread;
+import android.os.Looper;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -20,6 +23,7 @@ public class MyIntentService extends IntentService {
     public static final String EXTRA_MASS_QUEST = "EXTRA_MASS_QUEST";
     public static final String EXTRA_MASS_ANSWER = "EXTRA_MASS_ANSWER";
 
+    public static String TAG = "IntentService";
 
     String[][] massQuest;
     String[][] massAnswer;
@@ -31,27 +35,37 @@ public class MyIntentService extends IntentService {
 
     public void onCreate() {
         super.onCreate();
-        Log.d("IntentServiceLogs", "onCreate");
+        Log.d(TAG, "onCreate");
     }
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        Log.d("IntentService", "Start");
+        Log.d(TAG, "Start");
 
         assert intent != null;
         String action = intent.getAction();
         if (ACTION_RESPONSE_WORLD.equals(action)) {
-            String s = loadJSONFromAsset();
 
-            massWriteQuest(s);
-            massWriteAnswer(s);
+            Log.d(TAG, Thread.currentThread().getName() + " " + Thread.currentThread().getId());
+            HandlerThread handlerThread = new HandlerThread("CustomThread") {
+                @Override
+                public void run() {
+                    Log.d(TAG, Thread.currentThread().getName() + " " + Thread.currentThread().getId());
 
-            Intent responseIntent = new Intent();
-            responseIntent.setAction(ACTION_RESPONSE_WORLD);
-            responseIntent.putExtra(EXTRA_MASS_QUEST, massQuest);
-            responseIntent.putExtra(EXTRA_MASS_ANSWER, massAnswer);
+                    String s = loadJSONFromAsset();
 
-            sendBroadcast(responseIntent);
+                    massWriteQuest(s);
+                    massWriteAnswer(s);
+
+                    Intent responseIntent = new Intent();
+                    responseIntent.setAction(ACTION_RESPONSE_WORLD);
+                    responseIntent.putExtra(EXTRA_MASS_QUEST, massQuest);
+                    responseIntent.putExtra(EXTRA_MASS_ANSWER, massAnswer);
+
+                    sendBroadcast(responseIntent);
+                }
+            };
+            handlerThread.start();
         }
 
     }
